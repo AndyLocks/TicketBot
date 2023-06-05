@@ -12,6 +12,8 @@ public class Main {
 
     public static void main(String[] args) throws LoginException, InterruptedException {
 
+        System.out.println("pidor");
+
         JDA bot = JDABuilder.createDefault("MTExNDk3NDYwNDc4NDU3ODU5MA.GlOfji.kKT1UO7gWdgBDSDZnRM5L2PTZwM-ek0mb8RZ3U")
                 .setActivity(Activity.playing("aboba"))
                 .build().awaitReady();
