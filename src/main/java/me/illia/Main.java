@@ -1,19 +1,20 @@
 package me.illia;
 
 import events.HelloEvent;
+import io.github.cdimascio.dotenv.Dotenv;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.requests.GatewayIntent;
-
 
 public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println("pidor");
+        Dotenv config = Dotenv.configure().load();
+        String token = config.get("TOKEN");
 
         JDA bot = JDABuilder.create(
-                "MTExNDk3NDYwNDc4NDU3ODU5MA.GlOfji.kKT1UO7gWdgBDSDZnRM5L2PTZwM-ek0mb8RZ3U",
+                token,
                 GatewayIntent.GUILD_MESSAGES,
                 GatewayIntent.AUTO_MODERATION_CONFIGURATION,
                 GatewayIntent.AUTO_MODERATION_EXECUTION,
@@ -31,6 +32,7 @@ public class Main {
                 GatewayIntent.MESSAGE_CONTENT,
                 GatewayIntent.SCHEDULED_EVENTS
         ).build();
+
 
         bot.addEventListener(new HelloEvent());
     }
