@@ -1,19 +1,25 @@
 package me.illia;
 
 import events.HelloEvent;
+import events.SlashCommandMakeTicket;
+import events.guildsLengthActivity;
 import io.github.cdimascio.dotenv.Dotenv;
-import net.dv8tion.jda.api.JDA;
-import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.requests.GatewayIntent;
+import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder;
+import net.dv8tion.jda.api.sharding.ShardManager;
+import net.dv8tion.jda.api.utils.ChunkingFilter;
+import net.dv8tion.jda.api.utils.MemberCachePolicy;
+import net.dv8tion.jda.api.utils.cache.CacheFlag;
 
 public class Main {
 
+    public static ShardManager shard;
     public static void main(String[] args) {
 
         Dotenv config = Dotenv.configure().load();
         String token = config.get("TOKEN");
 
-        JDA bot = JDABuilder.create(
+        DefaultShardManagerBuilder bot = DefaultShardManagerBuilder.create(
                 token,
                 GatewayIntent.GUILD_MESSAGES,
                 GatewayIntent.AUTO_MODERATION_CONFIGURATION,
@@ -31,9 +37,13 @@ public class Main {
                 GatewayIntent.GUILD_VOICE_STATES,
                 GatewayIntent.MESSAGE_CONTENT,
                 GatewayIntent.SCHEDULED_EVENTS
-        ).build();
+        );
+        bot.setMemberCachePolicy(MemberCachePolicy.ALL);
+        bot.setChunkingFilter(ChunkingFilter.ALL);
+        bot.enableCache(CacheFlag.ONLINE_STATUS);
 
-
-        bot.addEventListener(new HelloEvent());
+        shard= bot.build();
+        shard.addEventListener(new SlashCommandMakeTicket());
+        shard.addEventListener(new guildsLengthActivity());
     }
 }
