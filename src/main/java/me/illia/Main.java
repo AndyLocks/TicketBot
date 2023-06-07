@@ -1,6 +1,5 @@
 package me.illia;
 
-import events.HelloEvent;
 import events.SlashCommandMakeTicket;
 import events.guildsLengthActivity;
 import io.github.cdimascio.dotenv.Dotenv;
