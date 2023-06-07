@@ -1,7 +1,7 @@
 package me.illia;
 
+import events.GuildsLengthActivity;
 import events.SlashCommandMakeTicket;
-import events.guildsLengthActivity;
 import io.github.cdimascio.dotenv.Dotenv;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder;
@@ -43,6 +43,6 @@ public class Main {
 
         shard= bot.build();
         shard.addEventListener(new SlashCommandMakeTicket());
-        shard.addEventListener(new guildsLengthActivity());
+        shard.addEventListener(new GuildsLengthActivity());
     }
 }
