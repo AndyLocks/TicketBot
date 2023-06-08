@@ -12,10 +12,9 @@ public class TextChannelNamer extends ListenerAdapter {
     @Override
     public void onChannelCreate(ChannelCreateEvent event) {
 
-        if(event.getChannel() instanceof TextChannel) {
+        if(event.getChannel() instanceof TextChannel channel) {
 
 
-            TextChannel channel = (TextChannel) event.getChannel();
             if (channel.getName().startsWith("ticket-room")) {
 
                 EmbedBuilder emb = new EmbedBuilder();

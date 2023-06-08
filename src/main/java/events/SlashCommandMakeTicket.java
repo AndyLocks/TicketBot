@@ -3,7 +3,6 @@ package events;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import net.dv8tion.jda.api.requests.restaction.ChannelAction;
 
 import java.util.EnumSet;
 
@@ -17,9 +16,10 @@ public class SlashCommandMakeTicket extends ListenerAdapter {
 
             String channelName = String.format("ticket room %d", (int) (Math.random() * 11000) - 100);
 
-            ChannelAction channel = event.getGuild().createTextChannel(channelName);
-
-            channel.addPermissionOverride(event.getMember(), EnumSet.of(Permission.MANAGE_CHANNEL), null).queue();
+            event.getGuild()
+                    .createTextChannel(channelName)
+                    .addPermissionOverride(event.getMember(), EnumSet.of(Permission.MANAGE_CHANNEL), null)
+                    .queue();
 
             event.reply(":white_check_mark:").setEphemeral(true).queue();
         }
