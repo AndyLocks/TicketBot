@@ -38,11 +38,8 @@ public class Main {
                 GatewayIntent.MESSAGE_CONTENT,
                 GatewayIntent.SCHEDULED_EVENTS
         );
-        bot.setMemberCachePolicy(MemberCachePolicy.ALL);
-        bot.setChunkingFilter(ChunkingFilter.ALL);
-        bot.enableCache(CacheFlag.ONLINE_STATUS);
 
-        shard= bot.build();
+        shard = bot.build();
         shard.addEventListener(new SlashCommandMakeTicket());
         shard.addEventListener(new GuildsLengthActivity());
         shard.addEventListener(new TextChannelNamer());
