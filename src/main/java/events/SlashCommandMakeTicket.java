@@ -15,7 +15,7 @@ public class SlashCommandMakeTicket extends ListenerAdapter {
         String command = event.getName();
         if (command.equals("make_ticket")) {
 
-            String channelName = String.format("Ticket room %d", (int) (Math.random() * 11000) - 100);
+            String channelName = String.format("ticket room %d", (int) (Math.random() * 11000) - 100);
 
             ChannelAction channel = event.getGuild().createTextChannel(channelName);
 
